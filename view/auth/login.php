@@ -9,11 +9,10 @@
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg"><?php lang('Oturum Açın'); ?></p>
-
+      <?php echo get_session('error') != false ? '<div class="alert alert-'.$_SESSION['error']['type'].'">'.$_SESSION['error']['message']."</div>" :null ?>
       <form action="<?= URL.'tr/login'?>" method="post">
         <div class="input-group mb-3">
-          <?= get_session('hata'); ?>
-          <input type="email" class="form-control" name="eposta" placeholder="<?php lang('E-mail')?>">
+          <input type="email" class="form-control" value="<?= $_SESSION['post']['eposta'] ?>" name="eposta" placeholder="<?php lang('E-mail')?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -21,7 +20,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="sifre" placeholder="<?php lang('Şifreniz')?>">
+          <input type="password" class="form-control" value="<?= $_SESSION['post']['sifre'] ?>" name="sifre" placeholder="<?php lang('Şifreniz')?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
