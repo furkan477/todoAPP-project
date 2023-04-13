@@ -45,8 +45,4 @@
         echo '<h1>404 Sayfa Bulunamadı</h1>';
         print_r($config['route']);
     }
-
-    
- 
-
 ?>
