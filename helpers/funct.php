@@ -33,8 +33,8 @@
     function lang($text){
         global $lang;
 
-        if(isset($lang[$text])) {echo $lang[$text];}
-        else {echo $text;}
+        if(isset($lang[$text])) {return $lang[$text];}
+        else {return $text;}
     }
     function add_session($index,$value){
         $_SESSION[$index] = $value;
@@ -43,12 +43,17 @@
         if(isset($_SESSION[$index])) return $_SESSION[$index];
         else return false;
     }
+    function filter($field){
+        return is_array($field)
+        ?   array_map('filter',$field)
+        :   htmlspecialchars(trim($field));
+    }
     function post($index){
-        if(isset($_POST[$index])) return htmlspecialchars(trim( $_POST[$index]));
+        if(isset($_POST[$index])) return filter($_POST[$index]);
         else return false;
     }
     function get($index){
-        if(isset($_GET[$index])) return htmlspecialchars(trim( $_GET[$index]));
+        if(isset($_GET[$index])) return filter($_GET[$index]);
         else return false;
     }
     function get_cookie($index){
