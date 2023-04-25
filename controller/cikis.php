@@ -1,4 +1,5 @@
 <?php
-    session_destroy();
-    redirect('tr/login');
+
+session_destroy();
+redirect('login');
 ?>
