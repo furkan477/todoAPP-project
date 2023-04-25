@@ -1,8 +1,11 @@
 <?php
 
-    if (route(0) == 'home'){
+if (route(0) == 'home' && !route(1)){
 
-        view('home/home');
-    }
+    $return = model('home', [], 'list');
 
-?>
+    view('home/home', $return['data']);
+}elseif(route(0) == 'home' && route(1) == 'calendar'){
+
+    view('home/calendar');
+}
